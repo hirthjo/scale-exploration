@@ -27,15 +27,41 @@
                    #(str (read-line))
                    (constantly true)
                    "")]
-    (try (write-context ctx path)
+    (try (write-context :burmeister ctx path)
          (catch Exception e 
            (println (str "Exception:" (.getMessage e)))
            (dump-context ctx)))))
 
+(defn- post-processing
+  "Determine optional normalforms for your explored scale."
+  [sm]
+  (let [canonical? (= "yes" (ask "\n Do you want to convert your scale into canonical representation? (yes or no):"
+                                         #(str (read-line))
+                                         #(or (= "no" %) (= "yes" %))
+                                         "\n Enter yes or no:"))
+        conjunctive? (= "yes" (ask "\n Do you want to convert your scale into conjunctive normalform? (yes or no):"
+                                           #(str (read-line))
+                                           #(or (= "no" %) (= "yes" %))
+                                           "\n Enter yes or no:"))
+        reduce?  (= "yes" (ask "\n Do you want to reduce the set of attributes to meet-irreducibles only? (yes or no):"
+                                      #(str (read-line))
+                                      #(or (= "no" %) (= "yes" %))
+                                      "\n Enter yes or no:"))
+        make-representation (if conjunctive?
+                              conjunctive-normalform-smeasure-representation
+                              (if canonical?
+                                canonical-smeasure-representation 
+                                identity))
+        reduce (if reduce? 
+                 meet-irreducibles-only-smeasure 
+                 identity)] 
+    (-> sm make-representation reduce)))
+
 (defn -main
-  "I don't do a whole lot ... yet."
+  "This is a wrapper project for the exploration of scales with I/O."
   [& args]
   (-> (get-context)
-      scale-exploration
+      exploration-of-scales
+      post-processing
       scale
       dump-context))

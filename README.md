@@ -1,44 +1,14 @@
 # scale-exploration
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+This is a wrapper project for the [exploration of scales](https://arxiv.org/abs/2102.02576) algorithm. The implementation as well as other useful methods can be found in the [conexp-clj](https://github.com/tomhanika/conexp-clj) repository.
 
 ## Usage
 
-FIXME: explanation
+Run the [standalone jar](https://github.com/hirthjo/scale-exploration/tree/master/target/uberjar/scale-exploration-1.0-SNAPSHOT-standalone.jar) and follow the algorithms instructions.
 
-    $ java -jar scale-exploration-0.1.0-standalone.jar [args]
+    $ java -jar scale-exploration-0.1.0-standalone.jar
 
-## Options
-
-FIXME: listing of options this app accepts.
-
+The scale of the resulting scale-measure will be dumped into a file in burmeister format.
 ## Examples
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2020 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+Example data sets can be found in the [conexp-clj](https://github.com/tomhanika/conexp-clj/tree/dev/testing-data) repository.
